@@ -1,0 +1,46 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .hidden {
+    display: none;
+  }
+}
+.file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #444;
+    cursor: pointer;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  input[type="file"] + label:before {
+    content: "Choose File";
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0074d9;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="file"] + label:hover:before {
+    background-color: #0063aa;
+  }
+
+  input[type="file"] + label:active:before {
+    background-color: #00578d;
+  }
+}

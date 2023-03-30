@@ -1,0 +1,212 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+.activation-document {
+  .section--green {
+    background-color: #e7f5f4;
+  }
+  .text--primary-color {
+    color: #6d6e71;
+  }
+  #card {
+    width: 210mm;
+    height: 296.5mm;
+    font-weight: 300;
+    position: relative;
+    overflow: hidden;
+    svg {
+      width: 112px;
+      height: 45px;
+    }
+  }
+  .header {
+    padding-block-start: 20px;
+    padding-block-end: 10px;
+    padding-inline: 30px;
+  }
+  .fib-logo {
+    height: 40px;
+    width: 155px;
+    object-fit: cover;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .parallelograms {
+    div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(47px) skew(55deg);
+    }
+    &__green {
+      background-color: #00a99d;
+      min-width: 450px;
+      height: 65px;
+      z-index: 2;
+    }
+    &__blue {
+      background-color: #0089cf;
+      min-width: 410px;
+      height: 77px;
+    }
+    &__transparent {
+      background-color: transparent;
+      min-width: 485px;
+      height: 40px;
+      border-left: #bcbec0 1px solid;
+    }
+  }
+  section {
+    padding: 20px 30px;
+  }
+  .dashed-border {
+    background-image: linear-gradient(to right, #bcbec0 50%, transparent 0%);
+    background-size: 15px 1px;
+    background-repeat: repeat-x;
+    height: 1px;
+    margin: 10px 5px;
+    width: 100%;
+  }
+  .bold {
+    font-weight: 600;
+  }
+  .congrats {
+    display: flex;
+    text-align: center;
+    gap: 50px;
+    padding-top: 25px;
+    div {
+      flex: 1;
+    }
+    p {
+      font-size: 1rem;
+      margin: 5px 0;
+      line-height: 20px;
+    }
+    h3 {
+      margin: 0;
+    }
+    .kr,
+    .ar {
+      font-family: "IBM Plex Sans Arabic", sans-serif;
+      direction: rtl;
+      &--highlined {
+        line-height: 25px;
+      }
+    }
+    .ar {
+      &--highlined {
+        line-height: 26px;
+      }
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    .form {
+      max-width: 50%;
+      ul {
+        list-style: none;
+        padding: 0;
+        line-height: 28px;
+        margin-bottom: 0;
+        font-size: 0.9rem;
+        li {
+          display: flex;
+          white-space: nowrap;
+          align-items: flex-end;
+          .piece-of-info {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+    .contact-info {
+      margin: 0;
+      font-size: 0.7rem;
+    }
+    .visa-card {
+      flex: 0 0 auto;
+    }
+  }
+
+  .instructions {
+    .instruction-steps {
+      position: relative;
+      .line {
+        height: 7px;
+        width: 85%;
+        background: rgb(0, 137, 207);
+        background: linear-gradient(
+          90deg,
+          #0089cf 0%,
+          #00a99d 25%,
+          #0089cf 50%,
+          #00a99d 75%,
+          #0089cf 100%
+        );
+      }
+      .spots {
+        width: 85%;
+        display: flex;
+        justify-content: space-between;
+        .spot {
+          width: 22px;
+          height: 29px;
+          margin-top: -6px;
+          background: linear-gradient(315deg, transparent 18%, #0089cf 18%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-weight: 600;
+        }
+        .green {
+          background: linear-gradient(315deg, transparent 18%, #00a99d 18%);
+        }
+      }
+    }
+    .spot-info {
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      width: 96%;
+      p {
+        margin: 0;
+        font-size: 0.6rem;
+      }
+    }
+    h1 {
+      font-size: 1.12rem;
+      color: #000;
+    }
+    h3 {
+      margin: 0;
+      font-size: 0.7rem;
+      color: #00a99d;
+    }
+    p {
+      margin: 10px 0;
+      font-size: 0.7rem;
+    }
+    .instruction-img-container {
+      padding-top: 10px;
+      width: 105px;
+      height: 187px;
+      img {
+        max-width: 100%;
+        height: 100%;
+      }
+    }
+    .instruction-img-with-popup-container {
+      width: 105px;
+    }
+  }
+}
