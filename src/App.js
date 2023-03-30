@@ -31,7 +31,7 @@ function App() {
           );
           html2pdf()
             .from(pdfContent)
-            .save(`unique_thankyou${thankyouLetter.name_on_card}`);
+            .save(`thankyou-letter-${thankyouLetter.name_on_card}`);
         });
       }
     },
