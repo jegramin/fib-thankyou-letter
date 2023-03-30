@@ -40,7 +40,9 @@ function App() {
   return (
     <div className="App">
       <FileInput setActivationData={setActivationData} />
-      <button onClick={handlePrint}>save</button>
+      <button onClick={handlePrint} className="save-button">
+        Save
+      </button>
       {activationData?.map((thankyouLetter) => {
         return (
           <div

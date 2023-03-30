@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
 
   .hidden {
@@ -16,7 +17,7 @@
 
   label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     text-align: center;
     color: #444;
     cursor: pointer;
@@ -25,22 +26,15 @@
   input[type="file"] {
     display: none;
   }
+}
 
-  input[type="file"] + label:before {
-    content: "Choose File";
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0074d9;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  input[type="file"] + label:hover:before {
-    background-color: #0063aa;
-  }
-
-  input[type="file"] + label:active:before {
-    background-color: #00578d;
-  }
+.save-button {
+  color: #444;
+  cursor: pointer;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #0372c2;
+  color: #fff;
+  font-size: 16px;
 }
