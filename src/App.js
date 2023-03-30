@@ -17,21 +17,20 @@ function App() {
     print: (printIframe) => {
       const document = printIframe.contentDocument;
       if (document) {
-        activationData.forEach(async (thankyouLetter) => {
+        activationData.forEach((thankyouLetter) => {
           const pdfContent = renderToStaticMarkup(
             <div className="hidden" ref={activationDocRef}>
               <ActivationDocument
                 activationCode={thankyouLetter.code}
-                lastDigits={thankyouLetter.card_type}
+                lastDigits={thankyouLetter.last_digits}
                 phoneNumber={thankyouLetter.phone_number}
                 cardHolderName={thankyouLetter.name_on_card}
                 branchName={thankyouLetter.name}
               />
             </div>
           );
-          await html2pdf()
+          html2pdf()
             .from(pdfContent)
-            .toPdf()
             .save(`unique_thankyou${thankyouLetter.name_on_card}`);
         });
       }
