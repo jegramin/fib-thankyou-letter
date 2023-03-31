@@ -17,21 +17,23 @@ function App() {
     print: (printIframe) => {
       const document = printIframe.contentDocument;
       if (document) {
-        activationData.forEach((thankyouLetter) => {
-          const pdfContent = renderToStaticMarkup(
-            <div className="hidden" ref={activationDocRef}>
-              <ActivationDocument
-                activationCode={thankyouLetter.code}
-                lastDigits={thankyouLetter.last_digits}
-                phoneNumber={thankyouLetter.phone_number}
-                cardHolderName={thankyouLetter.name_on_card}
-                branchName={thankyouLetter.name}
-              />
-            </div>
-          );
-          html2pdf()
-            .from(pdfContent)
-            .save(`thankyou-letter-${thankyouLetter.name_on_card}`);
+        activationData.forEach((thankyouLetter, index) => {
+          setTimeout(() => {
+            const pdfContent = renderToStaticMarkup(
+              <div className="hidden" ref={activationDocRef}>
+                <ActivationDocument
+                  activationCode={thankyouLetter.code}
+                  lastDigits={thankyouLetter.last_digits}
+                  phoneNumber={thankyouLetter.phone_number}
+                  cardHolderName={thankyouLetter.name_on_card}
+                  branchName={thankyouLetter.name}
+                />
+              </div>
+            );
+            html2pdf()
+              .from(pdfContent)
+              .save(`thankyou-letter-${thankyouLetter.name_on_card}`);
+          }, (index + 1) * 1000);
         });
       }
     },
