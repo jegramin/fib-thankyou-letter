@@ -5,10 +5,20 @@ import { useReactToPrint } from "react-to-print";
 import html2pdf from "html2pdf.js";
 import { renderToStaticMarkup } from "react-dom/server";
 import "./App.scss";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 function App() {
   const activationDocRef = useRef();
   const [activationData, setActivationData] = useState([]);
+  const [accomplishedNumber, setAccomplishedNumber] = useState(0);
+
+  const date = new Date();
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const currentDate = `${day}-${month}-${year}`;
 
   const handlePrint = useReactToPrint({
     onPrintError: (error) => console.log(error),
@@ -17,8 +27,9 @@ function App() {
     print: (printIframe) => {
       const document = printIframe.contentDocument;
       if (document) {
-        activationData.forEach((thankyouLetter, index) => {
-          setTimeout(() => {
+        const zip = new JSZip();
+        activationData.forEach(async (thankyouLetter, index) => {
+          setTimeout(async () => {
             const pdfContent = renderToStaticMarkup(
               <div className="hidden" ref={activationDocRef}>
                 <ActivationDocument
@@ -30,9 +41,32 @@ function App() {
                 />
               </div>
             );
-            html2pdf()
+
+            await html2pdf()
               .from(pdfContent)
-              .save(`thankyou-letter-${thankyouLetter.name_on_card}`);
+              .outputPdf()
+              .then((pdf) => {
+                zip.file(
+                  `thankyou-letter-${thankyouLetter.name_on_card}.pdf`,
+                  pdf,
+                  {
+                    binary: true,
+                  }
+                );
+              });
+
+            if (index === activationData.length - 1) {
+              zip
+                .generateAsync({
+                  type: "blob",
+                })
+                .then(function (content) {
+                  saveAs(content, `thankyou-letters-${currentDate}.zip`);
+                });
+            }
+            setAccomplishedNumber(
+              (prevAccomplishedNumber) => prevAccomplishedNumber + 1
+            );
           }, (index + 1) * 1000);
         });
       }
@@ -42,9 +76,18 @@ function App() {
   return (
     <div className="App">
       <FileInput setActivationData={setActivationData} />
-      <button onClick={handlePrint} className="save-button">
+      <button
+        disabled={!activationData.length}
+        onClick={handlePrint}
+        className="save-button"
+      >
         Save
       </button>
+      {accomplishedNumber > 0 && (
+        <span className="progress">
+          {accomplishedNumber} / {activationData.length}
+        </span>
+      )}
       {activationData?.map((thankyouLetter) => {
         return (
           <div

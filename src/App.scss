@@ -8,6 +8,17 @@
   .hidden {
     display: none;
   }
+
+  .progress {
+    color: #777;
+    font-size: 0.9rem;
+    padding: 20px;
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }
 .file-input-wrapper {
   display: flex;
