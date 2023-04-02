@@ -20,55 +20,60 @@ function App() {
   const year = date.getFullYear();
   const currentDate = `${day}-${month}-${year}`;
 
+  const generateAndSavePDFs = () => {
+    const zip = new JSZip();
+    activationData.forEach(async (thankyouLetter, index) => {
+      setTimeout(async () => {
+        const pdfContent = renderToStaticMarkup(
+          <div className="hidden" ref={activationDocRef}>
+            <ActivationDocument
+              activationCode={thankyouLetter.code}
+              lastDigits={thankyouLetter.last_digits}
+              phoneNumber={thankyouLetter.phone_number}
+              cardHolderName={thankyouLetter.name_on_card}
+              branchName={thankyouLetter.name}
+            />
+          </div>
+        );
+
+        await html2pdf()
+          .from(pdfContent)
+          .outputPdf()
+          .then((pdf) => {
+            zip.file(
+              `thankyou-letter-${thankyouLetter.name_on_card}.pdf`,
+              pdf,
+              {
+                binary: true,
+              }
+            );
+          });
+
+        if (index === activationData.length - 1) {
+          zip
+            .generateAsync({
+              type: "blob",
+            })
+            .then(function (content) {
+              saveAs(content, `thankyou-letters-${currentDate}.zip`);
+            });
+        }
+
+        setAccomplishedNumber(
+          (prevAccomplishedNumber) => prevAccomplishedNumber + 1
+        );
+      }, (index + 1) * 2000);
+    });
+  };
+
   const handlePrint = useReactToPrint({
     onPrintError: (error) => console.log(error),
     content: () => activationDocRef.current,
     removeAfterPrint: true,
-    print: (printIframe) => {
+    print: async (printIframe) => {
       const document = printIframe.contentDocument;
       if (document) {
-        const zip = new JSZip();
-        activationData.forEach(async (thankyouLetter, index) => {
-          setTimeout(async () => {
-            const pdfContent = renderToStaticMarkup(
-              <div className="hidden" ref={activationDocRef}>
-                <ActivationDocument
-                  activationCode={thankyouLetter.code}
-                  lastDigits={thankyouLetter.last_digits}
-                  phoneNumber={thankyouLetter.phone_number}
-                  cardHolderName={thankyouLetter.name_on_card}
-                  branchName={thankyouLetter.name}
-                />
-              </div>
-            );
-
-            await html2pdf()
-              .from(pdfContent)
-              .outputPdf()
-              .then((pdf) => {
-                zip.file(
-                  `thankyou-letter-${thankyouLetter.name_on_card}.pdf`,
-                  pdf,
-                  {
-                    binary: true,
-                  }
-                );
-              });
-
-            if (index === activationData.length - 1) {
-              zip
-                .generateAsync({
-                  type: "blob",
-                })
-                .then(function (content) {
-                  saveAs(content, `thankyou-letters-${currentDate}.zip`);
-                });
-            }
-            setAccomplishedNumber(
-              (prevAccomplishedNumber) => prevAccomplishedNumber + 1
-            );
-          }, (index + 1) * 1000);
-        });
+        generateAndSavePDFs();
       }
     },
   });
@@ -97,7 +102,7 @@ function App() {
           >
             <ActivationDocument
               activationCode={thankyouLetter.code}
-              lastDigits={thankyouLetter.card_type}
+              lastDigits={thankyouLetter.last_digits}
               phoneNumber={thankyouLetter.phone_number}
               cardHolderName={thankyouLetter.name_on_card}
               branchName={thankyouLetter.name}

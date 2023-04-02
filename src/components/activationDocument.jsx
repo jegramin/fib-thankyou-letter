@@ -6,7 +6,7 @@ import PinCodeScreen from "../assets/activation-instruction-fourth-step.png";
 import SuccessScreen from "../assets/activation-instruction-fifth-step.png";
 import FIBLogo from "../assets/fib-logo.svg";
 // import { formatPhoneNumber } from "../../shared/commonParts/utilityFunctions";
-// import VisaCardPreview from "../visaCardPreview/VisaCardPreview";
+import VisaCardPreview from "./VisaCardPreview";
 import "../styles/activationCode.scss";
 
 const ActivationDocument = ({
@@ -52,8 +52,8 @@ const ActivationDocument = ({
           <p className="kr kr--highlined">
             بەخێر بێیت بۆ دنیای خزمەتگوزاریـی بانکیـی دیجیتاڵی FIB، متمانەت
             پێمان بەرز دەنرخێنین و لێرەوە باشترین خزمەتگوزارییە داراییەکانت
-            پێشکەش دەکەین. کارتی FIBـیت ئامادەیە و ئێستا دەتوانیت لە ڕێگەی
-            ئەپڵیکەیشنـی FIBـیەوە کارای بکەیت.
+            پێشکەش دەکەین. کارتی FIB ـیت ئامادەیە و ئێستا دەتوانیت لە ڕێگەی
+            ئەپڵیکەیشنـی FIB ـیەوە کارای بکەیت.
           </p>
           <br />
           <p className="kr">ھاوبەشە دیجیتاڵییەکەت</p>
@@ -103,11 +103,11 @@ const ActivationDocument = ({
             </li>
           </ul>
         </div>
-        {/* <VisaCardPreview
+        <VisaCardPreview
           cardType="ACTIVATION_LETTER_CARD"
           cardHolderName={cardHolderName || ""}
           lastDigits={lastDigits || ""}
-        /> */}
+        />
       </section>
       <div className="dashed-border" />
       <section className="instructions">

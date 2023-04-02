@@ -1,0 +1,18 @@
+.file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+
+  label {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #444;
+    cursor: pointer;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}

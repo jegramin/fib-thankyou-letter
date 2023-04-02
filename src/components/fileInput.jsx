@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import "../styles/fileInput.scss";
 
 function FileInput({ setActivationData }) {
   const [fileName, setFileName] = useState("");
