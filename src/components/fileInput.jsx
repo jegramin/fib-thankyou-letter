@@ -2,6 +2,22 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import "../styles/fileInput.scss";
 
+function separateBy5(array) {
+  const result = [];
+  let current = [];
+
+  for (let i = 0; i < array.length; i++) {
+    current.push(array[i]);
+
+    if (i === array.length - 1 || i % 5 === 4) {
+      result.push(current);
+      current = [];
+    }
+  }
+
+  return result;
+}
+
 function FileInput({ setActivationData }) {
   const [fileName, setFileName] = useState("");
 
@@ -20,7 +36,19 @@ function FileInput({ setActivationData }) {
         const workbook = XLSX.read(data, { type: "binary" });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(worksheet);
-        setActivationData(jsonData);
+        setActivationData(
+          separateBy5(
+            jsonData.filter(
+              (value, index, self) =>
+                index ===
+                self.findIndex(
+                  (t) =>
+                    t.LAST_DIGITS === value.LAST_DIGITS &&
+                    t.PHONE_NUMBER === value.PHONE_NUMBER
+                )
+            )
+          )
+        );
       };
       reader.readAsBinaryString(file);
     } else {
