@@ -6,6 +6,11 @@ export function formatPhoneNumber(phoneNumber) {
     return phoneNumber;
   }
 
+  const areaCode = digitsOnly.substring(
+    digitsOnly.length - 10,
+    digitsOnly.length - 7
+  );
+
   const firstThreeDigit = digitsOnly.substring(
     digitsOnly.length - 7,
     digitsOnly.length - 4
@@ -13,7 +18,7 @@ export function formatPhoneNumber(phoneNumber) {
 
   const lastFourDigit = digitsOnly.substring(digitsOnly.length - 4);
 
-  const formattedNumber = `0750 ${firstThreeDigit} ${lastFourDigit}`;
+  const formattedNumber = `0${areaCode} ${firstThreeDigit} ${lastFourDigit}`;
 
   return formattedNumber;
 }
