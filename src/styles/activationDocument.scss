@@ -1,0 +1,44 @@
+@page {
+  size: 9.5cm 21cm portrait;
+  margin: 0;
+}
+
+.activation-document {
+  width: 9.5cm;
+  height: 21cm;
+  position: relative;
+  color: #607373;
+  font-weight: 500;
+  margin-inline: auto;
+  font-size: 14px;
+
+  &__activation-code {
+    position: absolute;
+    top: 7.6cm;
+    left: 0.5cm;
+  }
+
+  &__cardholder-name {
+    position: absolute;
+    top: 8.58cm;
+    left: 0.5cm;
+    white-space: nowrap;
+  }
+
+  &__phone-number {
+    position: absolute;
+    top: 9.58cm;
+    left: 0.5cm;
+  }
+
+  &__address {
+    position: absolute;
+    top: 10.58cm;
+    left: 0.5cm;
+  }
+  &__teaches_at {
+    position: absolute;
+    top: 11.5cm;
+    left: 0.5cm;
+  }
+}

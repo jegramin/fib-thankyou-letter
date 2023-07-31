@@ -11,7 +11,7 @@ function App() {
   const activationDocRef = useRef();
   const [activationData, setActivationData] = useState([]);
   const [accomplishedFiles, setAccomplishedFiles] = useState(0);
-
+  console.log(activationData);
   const date = new Date();
 
   const day = date.getDate();
@@ -27,11 +27,11 @@ function App() {
           const pdfContent = renderToStaticMarkup(
             <div className="hidden" ref={activationDocRef}>
               <ActivationDocument
-                activationCode={thankyouLetter.AC_CODE}
-                lastDigits={thankyouLetter.LAST_DIGITS}
-                phoneNumber={thankyouLetter.PHONE_NUMBER}
-                cardHolderName={thankyouLetter.NAME_ON_CARD}
-                branchName={thankyouLetter.DELIVERY_BRANCH}
+                activationCode={thankyouLetter.serial_number}
+                cardHolderName={thankyouLetter.name}
+                phoneNumber={thankyouLetter.phone_number}
+                address={thankyouLetter.address}
+                teachesAt={thankyouLetter["teaches-at"]}
               />
             </div>
           );
@@ -41,7 +41,7 @@ function App() {
             .outputPdf()
             .then((pdf) => {
               zip.file(
-                `${thankyouLetter.NAME_ON_CARD}-${thankyouLetter.PHONE_NUMBER}.pdf`,
+                `${thankyouLetter.name}-${thankyouLetter.phone_number}.pdf`,
                 pdf,
                 {
                   binary: true,

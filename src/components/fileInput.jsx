@@ -5,7 +5,7 @@ import "../styles/fileInput.scss";
 function separateBy5(array) {
   const result = [];
   let current = [];
-
+  console.log(current, result);
   for (let i = 0; i < array.length; i++) {
     current.push(array[i]);
 
@@ -43,8 +43,8 @@ function FileInput({ setActivationData }) {
                 index ===
                 self.findIndex(
                   (t) =>
-                    t.LAST_DIGITS === value.LAST_DIGITS &&
-                    t.PHONE_NUMBER === value.PHONE_NUMBER
+                    t.serial_number === value.serial_number &&
+                    t.phone_number === value.phone_number
                 )
             )
           )
