@@ -1,5 +1,5 @@
 @page {
-  size: 9.5cm 21cm portrait;
+  size: 9.9cm 21cm portrait;
   margin: 0;
 }
 
@@ -14,31 +14,31 @@
 
   &__activation-code {
     position: absolute;
-    top: 7.6cm;
-    left: 0.5cm;
+    top: 10.35cm;
+    left: 0.7cm;
   }
 
   &__cardholder-name {
     position: absolute;
-    top: 8.58cm;
-    left: 0.5cm;
+    top: 11.7cm;
+    left: 0.7cm;
     white-space: nowrap;
   }
 
   &__phone-number {
     position: absolute;
-    top: 9.58cm;
-    left: 0.5cm;
+    top: 13cm;
+    left: 0.7cm;
   }
 
   &__address {
     position: absolute;
-    top: 10.58cm;
-    left: 0.5cm;
+    top: 14.35cm;
+    left: 0.7cm;
   }
   &__teaches_at {
     position: absolute;
-    top: 11.5cm;
-    left: 0.5cm;
+    top: 15.6cm;
+    left: 0.7cm;
   }
 }
